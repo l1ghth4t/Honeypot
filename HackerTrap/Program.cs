@@ -18,8 +18,7 @@ namespace HackerTrap
 
             try
             {
-                Auth auth = new Auth();
-                auth.Show();
+                Application.Run(new MainForm());
             }
 
             catch (Exception e)
