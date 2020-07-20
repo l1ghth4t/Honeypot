@@ -44,11 +44,31 @@ namespace HackerTrap
 
             Tray.ContextMenuStrip.Items.Add(settings);
             Tray.ContextMenuStrip.Items.Add(exit);
+
+            trackedFiles.HorizontalScrollbar = true;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Tray.Visible = false;
+        }
+
+        private void trackedFiles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 46)
+                trackedFiles.Items.Remove(trackedFiles.SelectedItem);
+        }
+
+        private void butAddFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                trackedFiles.Items.Add(openFileDialog1.FileName);
+        }
+
+        private void butAddDir_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                trackedFiles.Items.Add(folderBrowserDialog1.SelectedPath);
         }
     }
 }
